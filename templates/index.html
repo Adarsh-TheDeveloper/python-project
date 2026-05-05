@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <main class="card">
+        <h1>Expense Tracker</h1>
+        <p class="subtitle">Track daily spending with smart monthly insights.</p>
+
+        <form id="expense-form">
+            <input type="hidden" id="expense_id">
+            <div class="grid">
+                <label>Amount
+                    <input type="number" id="amount" step="0.01" min="0.01" placeholder="e.g. 250.50" required>
+                </label>
+                <label>Date
+                    <input type="date" id="expense_date" required>
+                </label>
+            </div>
+            <label>Note (optional)
+                <input type="text" id="note" maxlength="120" placeholder="Groceries, fuel, rent...">
+            </label>
+            <div class="form-actions">
+                <button type="submit" id="save_btn">Add Daily Expense</button>
+                <button type="button" id="cancel_edit_btn" class="ghost-btn hidden">Cancel Edit</button>
+            </div>
+        </form>
+
+        <section class="total-box">
+            <div>
+                <h2>Monthly Total</h2>
+                <input type="month" id="month_picker">
+            </div>
+            <p id="monthly_total">0.00</p>
+        </section>
+
+        <section class="history-box">
+            <div class="history-head">
+                <h2>Expense History</h2>
+                <p>Total expenses: <span id="all_time_total">0.00</span></p>
+            </div>
+            <div class="history-filter">
+                <label>Filter by month
+                    <input type="month" id="history_month">
+                </label>
+                <button type="button" id="clear_history_filter" class="ghost-btn">Show All</button>
+            </div>
+            <div id="history_list" class="history-list"></div>
+        </section>
+
+        <p id="status"></p>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
